@@ -9,8 +9,8 @@ import models.user  # Import models so SQLAlchemy knows about them
 import models.player  # Import models so SQLAlchemy knows about them
 
 app = FastAPI(
-    title = "SoccerWordle-API",
-    description = "A Soccer Wordle clone API",
+    title = "PLGuesser-API",
+    description = "PLGuesser API",
     version = "1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
