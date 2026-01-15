@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global background with Premier League theme - light blue to green gradient */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #00d4ff 0%, #04f5ff 40%, #00ff85 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Subtle hexagon pattern overlay (soccer ball theme) */
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(56, 0, 60, 0.02) 0%, transparent 50%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 50px,
+      rgba(56, 0, 60, 0.01) 50px,
+      rgba(56, 0, 60, 0.01) 52px
+    ),
+    repeating-linear-gradient(
+      60deg,
+      transparent,
+      transparent 50px,
+      rgba(56, 0, 60, 0.01) 50px,
+      rgba(56, 0, 60, 0.01) 52px
+    ),
+    repeating-linear-gradient(
+      120deg,
+      transparent,
+      transparent 50px,
+      rgba(56, 0, 60, 0.01) 50px,
+      rgba(56, 0, 60, 0.01) 52px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}

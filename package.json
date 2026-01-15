@@ -1,0 +1,14 @@
+{
+  "name": "wordle-clone",
+  "version": "1.0.0",
+  "description": "Soccer Wordle Clone - Full Stack Application",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && python main.py",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:all": "cd backend && pip install -e . && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
