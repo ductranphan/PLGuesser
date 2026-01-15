@@ -6,6 +6,7 @@ import GameBoard from './components/GameBoard';
 import Home from './components/Home';
 import Leaderboard from './components/Leaderboard';
 import './App.css';
+import { Analytics } from "@vercel/analytics/next"
 
 // Protected Route component
 function ProtectedRoute({ children }) {
