@@ -29,7 +29,7 @@ class Settings(BaseSettings):
             return v
         if isinstance(v, list):
             return ",".join(v)
-        return "http://localhost:5173, https://plguesser.vercel.app"
+        return "http://localhost:5173, https://plguesser.vercel.app, https://pl-guesser.vercel.app"
 
     @property
     def allowed_origins_list(self) -> List[str]:
