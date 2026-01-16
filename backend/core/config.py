@@ -29,16 +29,14 @@ class Settings(BaseSettings):
             return v
         if isinstance(v, list):
             return ",".join(v)
-        return "http://localhost:5173, https://plguesser.vercel.app, https://pl-guesser.vercel.app"
+        return "http://localhost:5173,https://pl-guesser.vercel.app"
 
     @property
     def allowed_origins_list(self) -> List[str]:
         """Convert comma-separated string to list"""
+        # Split by comma and strip whitespace from each origin
         origins = [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",") if origin.strip()]
-        # Ensure local dev origins are always allowed
-        for default_origin in ("http://localhost:5173", "http://127.0.0.1:5173"):
-            if default_origin not in origins:
-                origins.append(default_origin)
+        print(f"[DEBUG] Allowed origins: {origins}")  # Debug log
         return origins
 
     class Config:
