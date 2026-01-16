@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
     API_PREFIX: str = "/api/"
     DEBUG: bool = False
-    ALLOWED_ORIGINS: str = "http://localhost:5173"
+    ALLOWED_ORIGINS: str = "http://localhost:5173, https://plguesser.vercel.app, https://pl-guesser.vercel.app"
     soccer_api_key: Optional[str] = None  # Optional API key for external soccer API
 
     @field_validator("ALLOWED_ORIGINS", mode="before")
