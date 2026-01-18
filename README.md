@@ -1,84 +1,108 @@
-# PLGuesser
+⚽️ PLGuesser
+PLGuesser is a Premier League–themed Wordle clone. Test your football knowledge by guessing the mystery player based on their stats, nationality, and position!
 
-Premier League–themed Wordle clone with guest play, daily challenges, stats, and a global leaderboard.
+✨ Features
+🟢 Free Play (Guest Mode): Jump right in and play unlimited rounds without an account.
 
-## Features
-- Free play (guest) and daily challenge (logged-in)
-- Player stats and win streaks
-- Global leaderboard (win rate with tie-breakers)
-- Premier League–inspired UI theme
+📅 Daily Challenge: A unique player to guess every day (synchronized globally). Log in to track your streak!
 
-## Tech Stack
-- Frontend: React + Vite + Tailwind
-- Backend: FastAPI + SQLAlchemy
-- Database: PostgreSQL (prod)
+📊 Advanced Stats: Track your win rate, current streak, and max streak.
 
-## Getting Started (Local)
+🏆 Global Leaderboard: Compete against other users based on win rate and tie-breakers.
 
-### 1) Clone and install
-```
+🎨 Immersive UI: A clean, responsive interface inspired by the official Premier League branding.
+
+🛠 Tech Stack
+Frontend
+Framework: React + Vite
+
+Styling: Tailwind CSS
+
+State/Routing: React Router
+
+Backend
+API: FastAPI (Python)
+
+ORM: SQLAlchemy
+
+Database: PostgreSQL (Production) / SQLite (Optional for local dev)
+
+🚀 Getting Started (Local Development)
+Follow these steps to get a local copy up and running.
+
+1. Clone the Repository
+
 git clone <your-repo-url>
 cd PLGuesser
-```
 
-#### Frontend
-```
+3. Backend Setup
+
+Navigate to the backend folder, create a virtual environment, and install dependencies.
+cd backend
+
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+# Windows:
+.venv\Scripts\activate
+# Mac/Linux:
+source .venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+3. Database & Environment (Backend)
+Create a .env file in the backend/ directory:
+
+Code snippet
+
+DATABASE_URL=postgresql+psycopg2://USER:PASSWORD@HOST:PORT/DBNAME
+ALLOWED_ORIGINS=http://localhost:5173
+SECRET_KEY=your_super_secret_key
+4. Seed Data
+Populate your local database with Premier League player data.
+
+# Ensure you are in the root or backend directory and venv is active
+python backend/scripts/seed_players.py
+5. Frontend Setup
+Open a new terminal, navigate to the frontend, and run the app.
+
 cd frontend
 npm install
+
+# Create .env (optional)
+echo "VITE_API_URL=http://localhost:8000" > .env
+
 npm run dev
-```
+Your app should now be running at http://localhost:5173! 🚀
 
-#### Backend
-```
-cd backend
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-python main.py
-```
+🌍 Deployment
+Database (Render/Neon/Supabase)
+Ensure your production database is accessible. Update your backend environment variables to match your provider.
 
-### 2) Environment variables
-Create `backend/.env`:
-```
-DATABASE_URL=your_postgresql_link
-ALLOWED_ORIGINS=http://localhost:5173
-SECRET_KEY=your_secret_key
-```
+Backend (Render)
+Connect your repo to Render.
 
-Create `frontend/.env` (optional for local):
-```
-VITE_API_URL=http://localhost:8000
-```
+Set the Build Command: pip install -r requirements.txt.
 
-### 3) Seed players
-```
-python backend/scripts/seed_players.py
-```
+Set the Start Command: uvicorn main:app --host 0.0.0.0 --port 10000.
 
-## Using PostgreSQL (Render)
+Add Environment Variables:
 
-1) Set backend env:
-```
-DATABASE_URL=postgresql+psycopg2://USER:PASSWORD@HOST:PORT/DBNAME
-ALLOWED_ORIGINS=https://your-vercel-app.vercel.app
-```
+DATABASE_URL: (Your production DB URL)
 
-2) Set frontend env (Vercel):
-```
-VITE_API_URL=https://your-render-backend.onrender.com
-```
+ALLOWED_ORIGINS: https://your-frontend-app.vercel.app
 
-## How to Use From GitHub
-1) Clone the repo and install dependencies (see Getting Started).
-2) Set env vars for backend and frontend.
-3) Seed players.
-4) Run backend and frontend, then open the Vite URL (default `http://localhost:5173`).
+Frontend (Vercel/Netlify)
+Connect your repo.
 
-## Scripts
-- `backend/scripts/seed_players.py` — seed player data
-- `backend/scripts/migrate_sqlite_to_postgres.py` — migrate SQLite to Postgres
-- `backend/scripts/reset_postgres_sequences.py` — fix Postgres sequence ids after migration
+Set the Build Command: npm run build.
 
-## Notes
-- Daily challenge uses Eastern Time for player selection.
-- Guest mode is unlimited but does not track stats.
+Add Environment Variables:
+
+VITE_API_URL: https://your-render-backend.onrender.com
+
+📝 Notes
+Timezone: The Daily Challenge resets at midnight Eastern Time (ET).
+
+Guest Mode: Stats are not saved if you play as a guest. Create an account to save your progress!
