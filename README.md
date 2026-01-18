@@ -18,7 +18,7 @@ Premier League–themed Wordle clone with guest play, daily challenges, stats, a
 ### 1) Clone and install
 ```
 git clone <your-repo-url>
-cd wordle-clone
+cd PLGuesser
 ```
 
 #### Frontend
