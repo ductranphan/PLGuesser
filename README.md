@@ -11,7 +11,7 @@ Premier League–themed Wordle clone with guest play, daily challenges, stats, a
 ## Tech Stack
 - Frontend: React + Vite + Tailwind
 - Backend: FastAPI + SQLAlchemy
-- Database: SQLite (local) or PostgreSQL (prod)
+- Database: PostgreSQL (prod)
 
 ## Getting Started (Local)
 
@@ -40,7 +40,7 @@ python main.py
 ### 2) Environment variables
 Create `backend/.env`:
 ```
-DATABASE_URL=sqlite:///./soccer_wordle.db
+DATABASE_URL=your_postgresql_link
 ALLOWED_ORIGINS=http://localhost:5173
 SECRET_KEY=your_secret_key
 ```
@@ -66,16 +66,6 @@ ALLOWED_ORIGINS=https://your-vercel-app.vercel.app
 2) Set frontend env (Vercel):
 ```
 VITE_API_URL=https://your-render-backend.onrender.com
-```
-
-3) (Optional) Migrate SQLite data to Postgres:
-```
-python backend/scripts/migrate_sqlite_to_postgres.py
-```
-
-4) If you migrated and get duplicate key errors:
-```
-python backend/scripts/reset_postgres_sequences.py
 ```
 
 ## How to Use From GitHub
