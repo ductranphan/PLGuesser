@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { useNavigate } from 'react-router-dom';
 import { 
   createFreePlayGame,
@@ -39,8 +40,10 @@ function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#28002a] rounded-lg shadow-md border-2 border-[#2D1B69] py-12 px-4">
-      <div className="max-w-4xl mx-auto">
+    <>
+      <Analytics />
+      <div className="min-h-screen bg-[#28002a] rounded-lg shadow-md border-2 border-[#2D1B69] py-12 px-4">
+        <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-white mb-4">
@@ -142,8 +145,9 @@ function Home() {
             <p>🏆 In Daily Challenge, compete for the best score!</p>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
