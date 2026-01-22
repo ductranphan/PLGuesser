@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import { 
   createFreePlayGame,
   startDailyChallenge,
@@ -9,12 +10,21 @@ import {
 
 function Home() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   const [loading, setLoading] = useState(false);
   const isLoggedIn = isAuthenticated();
 
   const handleFreePlay = async () => {
     setLoading(true);
     try {
+      // If user is logged in, log them out first (free play is for guests only)
+      if (isLoggedIn) {
+        console.log('Logging out to play free play...');
+        await logout();
+        // Wait a moment for logout to complete
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+      
       await createFreePlayGame();
       navigate('/game');
     } catch (error) {
@@ -74,8 +84,13 @@ function Home() {
               disabled={loading}
               className="w-full bg-[#00ff85] text-black py-3 rounded-lg font-semibold hover:bg-[#00e676] transition-colors"
             >
-              {loading ? 'Starting...' : 'Start Free Play'}
+              {loading ? 'Starting...' : isLoggedIn ? 'Logout & Play Free' : 'Start Free Play'}
             </button>
+            {isLoggedIn && (
+              <p className="text-xs text-gray-500 mt-2 text-center">
+                Note: This will log you out
+              </p>
+            )}
           </div>
 
           {/* Daily Challenge Card */}
