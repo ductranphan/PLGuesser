@@ -14,22 +14,22 @@ async def get_global_leaderboard(
     limit: int = Query(100, ge=1, le=500),
     db: Session = Depends(get_db)
 ):
-    """Get global leaderboard sorted by various metrics"""
+    """Get global leaderboard sorted by total wins first, then win rate"""
     
     # Only include users who have played at least 1 game
     query = db.query(User).filter(User.total_games_played > 0)
     
-    # Sort by win rate, then games played, then average guesses (lower is better)
+    # Sort by total wins first (most important), then win rate, then average guesses (lower is better)
     query = query.order_by(
+        desc(User.total_wins),  # Primary: Most wins ranks highest
         desc(
             case(
                 (User.total_games_played > 0, User.total_wins * 100.0 / User.total_games_played),
                 else_=0
             )
-        ),
-        desc(User.total_games_played),
+        ),  # Secondary: Win rate as tiebreaker
         case((User.average_guesses.is_(None), 1), else_=0),
-        User.average_guesses
+        User.average_guesses  # Tertiary: Lower average guesses is better
     )
     
     users = query.limit(limit).all()
@@ -85,17 +85,17 @@ async def get_my_rank(
     # Only include users who have played at least 1 game
     query = db.query(User).filter(User.total_games_played > 0)
     
-    # Sort by win rate, then games played, then average guesses (lower is better)
+    # Sort by total wins first (most important), then win rate, then average guesses (lower is better)
     query = query.order_by(
+        desc(User.total_wins),  # Primary: Most wins ranks highest
         desc(
             case(
                 (User.total_games_played > 0, User.total_wins * 100.0 / User.total_games_played),
                 else_=0
             )
-        ),
-        desc(User.total_games_played),
+        ),  # Secondary: Win rate as tiebreaker
         case((User.average_guesses.is_(None), 1), else_=0),
-        User.average_guesses
+        User.average_guesses  # Tertiary: Lower average guesses is better
     )
     
     users = query.all()
