@@ -136,7 +136,7 @@ function Leaderboard() {
                         <td className="py-3 pr-4">{entry.total_games_played}</td>
                         <td className="py-3 pr-4">{entry.best_win_streak}</td>
                         <td className="py-3 pr-4">
-                          {entry.average_guesses ? entry.average_guesses : '-'}
+                          {entry.average_guesses ? entry.average_guesses.toFixed(1) : '-'}
                         </td>
                       </tr>
                     );
@@ -167,7 +167,7 @@ function Leaderboard() {
                 <div className="border-2 border-gray-200 rounded-lg p-4">
                   <div className="text-xs text-gray-500 mb-1">Avg Guesses</div>
                   <div className="text-2xl font-bold text-gray-900">
-                    {myStats.average_guesses ? myStats.average_guesses : '-'}
+                    {myStats.average_guesses ? myStats.average_guesses.toFixed(1) : '-'}
                   </div>
                 </div>
               </div>
