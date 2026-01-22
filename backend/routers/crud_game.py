@@ -83,7 +83,7 @@ def build_game_response(game: Game, guesses: Optional[list] = None) -> GameRespo
     )
 
 #THIS FUNCTION TAKES THE GUYS WITH THE MOST CONTRIBUTIONS TO GUESS, ILL CHANGE LATER TO A MORE ACCURATE METHOD
-def select_popular_player(db: Session, limit: int = 200) -> Optional[Player]:
+def select_popular_player(db: Session, limit: int = 100) -> Optional[Player]:
     """Select a popular player based on goal contribution, with fallback."""
     popular_players = (
         db.query(Player)
@@ -97,7 +97,7 @@ def select_popular_player(db: Session, limit: int = 200) -> Optional[Player]:
     return random.choice(popular_players)
 #////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-def select_daily_challenge_player(db: Session, limit: int = 200) -> Optional[Player]:
+def select_daily_challenge_player(db: Session, limit: int = 100) -> Optional[Player]:
     """Pick a deterministic 'player of the day' from popular players."""
     base_query = (
         db.query(Player)

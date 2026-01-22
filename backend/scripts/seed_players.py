@@ -560,6 +560,11 @@ def seed_database():
                 team_id = team["id"]
                 team_name = team["name"]
                 
+                # # Skip the first 16 teams (already seeded)
+                # if team_idx <= 18:
+                #     print(f"\n[{team_idx}/{len(teams)}] [SKIP] {team_name} - already seeded (first 18 teams)")
+                #     continue
+                
                 # Skip only teams that are known to be "full"
                 if normalize_team_name(team_name) in full_teams:
                     print(f"\n[{team_idx}/{len(teams)}] [SKIP TEAM] {team_name} is marked as full - skipping entire team")
