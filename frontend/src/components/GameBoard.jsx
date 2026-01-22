@@ -449,6 +449,7 @@ function GameBoard() {
                     key={`guess-${index}-${guess.guessed_player_id || index}`}
                     guess={guess}
                     targetPlayer={targetPlayer}
+                    guessNumber={index + 1}
                   />
                 );
               })}
@@ -459,6 +460,9 @@ function GameBoard() {
         {/* Player Selector (only show if game in progress) */}
         {!isGameOver && (
           <div className="bg-[#28002a] rounded-lg shadow-md border-2 border-[#2D1B69] p-6 mb-6">
+            <div className="mb-4 pb-3 border-b border-[#38003c]">
+              <span className="text-sm font-semibold text-[#00ff85]">Guess #{guesses.length + 1}</span>
+            </div>
             <h2 className="text-xl font-bold text-[#00ff85] mb-4">Make Your Guess</h2>
             <PlayerSelector
               key={selectorKey}
@@ -495,7 +499,8 @@ function GameBoard() {
         {!isGameOver && guesses.length < MAX_GUESSES && (
           <div className="space-y-4">
             {Array.from({ length: MAX_GUESSES - guesses.length }).map((_, index) => {
-              if (guesses.length === 0 && index === 0) {
+              // Skip the first empty box since "Make Your Guess" shows that number
+              if (index === 0) {
                 return null;
               }
               return (

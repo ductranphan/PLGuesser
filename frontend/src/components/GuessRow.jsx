@@ -4,7 +4,7 @@ import { formatPosition } from '../utils/positionMap';
 /**
  * GuessRow - Displays a single guess with color-coded hints
  */
-function GuessRow({ guess, targetPlayer = null }) {
+function GuessRow({ guess, targetPlayer = null, guessNumber = null }) {
   if (!guess || !guess.guessed_player || !guess.hints) return null;
 
   const { guessed_player, hints } = guess;
@@ -66,6 +66,13 @@ function GuessRow({ guess, targetPlayer = null }) {
     <div className={`bg-[#28002a] rounded-lg shadow-md border-2 p-4 backdrop-blur-sm transition-all duration-200 hover:border-[#00ff85] hover:shadow-lg hover:shadow-[#00ff85]/20 ${
       isCorrect ? 'border-[#00ff85] ring-2 ring-[#00ff85]/30' : 'border-[#38003c]'
     }`}>
+      {/* Guess Number Header */}
+      {guessNumber !== null && (
+        <div className="mb-3 pb-2 border-b border-[#38003c]">
+          <span className="text-sm font-semibold text-[#00ff85]">Guess #{guessNumber}</span>
+        </div>
+      )}
+      
       {/* Player Photo and Name Only */}
       <div className="mb-4 flex items-center gap-3">
         {guessed_player.photo_url ? (
