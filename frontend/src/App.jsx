@@ -5,6 +5,7 @@ import Register from './components/Register';
 import GameBoard from './components/GameBoard';
 import Home from './components/Home';
 import Leaderboard from './components/Leaderboard';
+import Footer from './components/Footer';
 import './App.css';
 
 // Protected Route component
@@ -25,19 +26,24 @@ function ProtectedRoute({ children }) {
 // Main App component
 function AppContent() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/leaderboard" element={<Leaderboard />} />
-      <Route 
-        path="/game" 
-        element={
-          <GameBoard />
-        } 
-      />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route 
+            path="/game" 
+            element={
+              <GameBoard />
+            } 
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
   );
 }
 
