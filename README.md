@@ -88,22 +88,22 @@ Connect your repo to Render.
 
 Set the Build Command: pip install -r requirements.txt.
 
-Set the Start Command: uvicorn main:app --host 0.0.0.0 --port 10000.
+Set the Start Command: uvicorn main:app --host 0.0.0.0 --port 10000 or python main.py
 
 Add Environment Variables:
 
-DATABASE_URL: (Your production DB URL)
+DATABASE_URL: https://dashboard.render.com/d/dpg-d5lfh8re5dus73dofs00-a
 
-ALLOWED_ORIGINS: https://your-frontend-app.vercel.app
+ALLOWED_ORIGINS: https://pl-guesser.vercel.app/
 
-Frontend (Vercel/Netlify)
+Frontend (Vercel)
 Connect your repo.
 
 Set the Build Command: npm run build.
 
 Add Environment Variables:
 
-VITE_API_URL: https://your-render-backend.onrender.com
+VITE_API_URL: https://plguesser.onrender.com/
 
 📝 Notes
 Timezone: The Daily Challenge resets at midnight Eastern Time (ET).
