@@ -12,6 +12,7 @@ from jose import JWTError, jwt
 from schemas.user import UserCreate, UserResponse
 from typing import Optional
 from fastapi.security import OAuth2PasswordBearer
+from utils.profanity_filter import validate_username, validate_email
 
 
 router = APIRouter(
@@ -79,6 +80,22 @@ class Token(BaseModel):
 @router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 async def register_user(user_data: UserCreate, db: db_dependency):
     try:
+        # Validate username for profanity
+        username_valid, username_error = validate_username(user_data.username)
+        if not username_valid:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=username_error
+            )
+        
+        # Validate email for profanity
+        email_valid, email_error = validate_email(user_data.email)
+        if not email_valid:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=email_error
+            )
+        
         # Check if user already exists
         existing_user = db.query(User).filter(
             (User.username == user_data.username) | (User.email == user_data.email)
