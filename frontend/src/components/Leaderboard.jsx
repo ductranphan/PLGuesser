@@ -98,7 +98,7 @@ function Leaderboard() {
         <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <h2 className="text-xl font-bold text-gray-900">Global Rankings</h2>
-            <span className="text-sm text-gray-500">Sorted by win rate</span>
+            <span className="text-sm text-gray-500">Sort by best players</span>
           </div>
 
           {loading ? (
